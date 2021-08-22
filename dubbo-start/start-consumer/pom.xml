@@ -45,6 +45,11 @@
             <artifactId>start-provider</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>pers.mk.dubbo.start</groupId>
+            <artifactId>start-api</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
     <build>
