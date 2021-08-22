@@ -22,6 +22,7 @@ public class TestController {
     @ResponseBody
     @RequestMapping("/test")
     public List<TestModel> initOrder() {
-        return testService.getTestInformation();
+        List<TestModel> testInformation = testService.getTestInformation();
+        return testInformation;
     }
 }

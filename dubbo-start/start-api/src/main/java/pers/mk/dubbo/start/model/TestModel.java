@@ -1,5 +1,6 @@
 package pers.mk.dubbo.start.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -7,7 +8,7 @@ import java.util.Date;
  * @Author: mk
  * @Date: 2021/8/22 14:29
  */
-public class TestModel {
+public class TestModel implements Serializable {
     private Integer id;
     private String userName;
     private String password;
