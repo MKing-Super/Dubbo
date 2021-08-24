@@ -15,6 +15,7 @@
     <description>learn-provider</description>
     <properties>
         <java.version>1.8</java.version>
+        <!-- 项目文字编码 -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
@@ -35,7 +36,7 @@
             <version>0.2.0</version>
         </dependency>
 
-        <!-- 引入start-api服务 -->
+        <!-- 引入learn-api服务 -->
         <dependency>
             <groupId>pers.mk.dubbo.learn</groupId>
             <artifactId>learn-api</artifactId>
@@ -50,9 +51,16 @@
             <artifactId>spring-boot-autoconfigure</artifactId>
         </dependency>
 
+        <!-- yaml支持 -->
         <dependency>
             <groupId>org.yaml</groupId>
             <artifactId>snakeyaml</artifactId>
+        </dependency>
+
+        <!-- slf4j日志 -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
         </dependency>
     </dependencies>
 
@@ -63,7 +71,7 @@
 
 
 
-        <plugins>
+    <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
