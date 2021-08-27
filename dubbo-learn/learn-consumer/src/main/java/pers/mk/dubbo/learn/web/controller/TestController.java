@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import pers.mk.dubbo.learn.model.DubboUser;
 import pers.mk.dubbo.learn.model.TestModel;
 import pers.mk.dubbo.learn.service.TestService;
 
@@ -25,5 +26,13 @@ public class TestController {
     public List<TestModel> initOrder() {
         List<TestModel> testInformation = testService.getTestInformation();
         return testInformation;
+    }
+
+    @ResponseBody
+    @RequestMapping("/dubboUser")
+    public DubboUser get() {
+        DubboUser dubboUser = testService.getDubboUser(1);
+        System.out.println(dubboUser);
+        return dubboUser;
     }
 }

@@ -37,7 +37,7 @@
 
         <!-- 相关表的配置 -->
         <table tableName="dubbo_user" domainObjectName="DubboUser"
-               enableCountByExample="true"
+               enableCountByExample="false"
                enableDeleteByExample="false"
                enableSelectByExample="false"
                enableUpdateByExample="false"/>

@@ -1,7 +1,10 @@
 package pers.mk.dubbo.learn.service;
 
+import pers.mk.dubbo.learn.model.DubboUser;
 import pers.mk.dubbo.learn.model.TestModel;
 
+import javax.annotation.Resource;
+import javax.annotation.Resources;
 import java.util.List;
 
 /**
@@ -11,4 +14,5 @@ import java.util.List;
  */
 public interface TestService {
     public List<TestModel> getTestInformation();
+    public DubboUser getDubboUser(Integer id);
 }
