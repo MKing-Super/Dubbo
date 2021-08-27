@@ -12,3 +12,12 @@ dubbo:
     port: 20880
   monitor:
     protocol: registry
+
+spring:
+  datasource:
+    name: learn
+    url: jdbc:mysql://127.0.0.1:3306/dubbo_learn
+    username: root
+    password: 123456
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
