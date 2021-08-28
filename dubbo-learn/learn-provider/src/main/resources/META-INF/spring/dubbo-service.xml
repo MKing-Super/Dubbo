@@ -18,4 +18,5 @@
 
 
     <dubbo:service interface="pers.mk.dubbo.learn.service.TestService" version="1.0.0" ref="testService" owner="mk"/>
+    <dubbo:service interface="pers.mk.dubbo.learn.service.DubboService" version="1.0.0" ref="dubboService" owner="mk"/>
 </beans>
