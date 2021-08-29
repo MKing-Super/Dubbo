@@ -23,6 +23,13 @@
 
 
     <dependencies>
+        <!-- 引入learn-api服务 -->
+        <dependency>
+            <groupId>pers.mk.dubbo.learn</groupId>
+            <artifactId>learn-api</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -36,12 +43,6 @@
             <version>0.2.0</version>
         </dependency>
 
-        <!-- 引入learn-api服务 -->
-        <dependency>
-            <groupId>pers.mk.dubbo.learn</groupId>
-            <artifactId>learn-api</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot</artifactId>
@@ -63,6 +64,7 @@
             <artifactId>slf4j-api</artifactId>
         </dependency>
 
+        <!-- mybatis依赖 -->
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
@@ -83,6 +85,13 @@
             <artifactId>druid</artifactId>
             <version>1.0.11</version>
         </dependency>
+
+        <!-- apollo依赖 -->
+        <dependency>
+            <groupId>com.ctrip.framework.apollo</groupId>
+            <artifactId>apollo-client</artifactId>
+            <version>1.1.0</version>
+        </dependency>
     </dependencies>
 
 
@@ -93,28 +102,29 @@
 
 
     <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>copy-dependencies</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>copy-dependencies</goal>
-                        </goals>
-                        <configuration>
-                            <type>jar</type>
-                            <includeTypes>jar</includeTypes>
-                            <useUniqueVersions>false</useUniqueVersions>
-                            <outputDirectory>
-                                ${project.build.directory}/lib
-                            </outputDirectory>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
+        <!-- dubbo项目打依赖jar包，引入必备 -->
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <executions>
+                <execution>
+                    <id>copy-dependencies</id>
+                    <phase>package</phase>
+                    <goals>
+                        <goal>copy-dependencies</goal>
+                    </goals>
+                    <configuration>
+                        <type>jar</type>
+                        <includeTypes>jar</includeTypes>
+                        <useUniqueVersions>false</useUniqueVersions>
+                        <outputDirectory>
+                            ${project.build.directory}/lib
+                        </outputDirectory>
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>
+    </plugins>
 
 
 </project>
