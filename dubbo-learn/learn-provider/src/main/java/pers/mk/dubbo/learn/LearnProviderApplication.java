@@ -8,7 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ImportResource;
 
 @ComponentScan(basePackages = {"pers.mk.dubbo.learn.mapper","pers.mk.dubbo.learn.service"})     //扫描包，使注解生效
-@ImportResource({"classpath:/META-I NF/spring/*.xml"})
+@ImportResource({"classpath:/META-INF/spring/*.xml"})
 @SpringBootApplication
 public class LearnProviderApplication {
     private static final Logger LOGGER = LoggerFactory.getLogger(LearnProviderApplication.class);

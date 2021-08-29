@@ -1,17 +1,17 @@
 server:
   port: 9010
 
-dubbo:
-  application:
-    name: start-provider
-  registry:
-    address: 127.0.0.1:2181
-    protocol: zookeeper
-  protocol:
-    name: dubbo
-    port: 20880
-  monitor:
-    protocol: registry
+#dubbo:
+#  application:
+#    name: start-provider
+#  registry:
+#    address: 127.0.0.1:2181
+#    protocol: zookeeper
+#  protocol:
+#    name: dubbo
+#    port: 20880
+#  monitor:
+#    protocol: registry
 
 spring:
   datasource:

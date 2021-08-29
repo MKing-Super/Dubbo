@@ -15,8 +15,40 @@
         http://www.springframework.org/schema/util/spring-util.xsd">
 
 
+    <!-- 协议配置：用于配置提供服务的协议信息，协议由提供方指定，消费方被动接受 -->
+    <dubbo:protocol name="dubbo" port="20880"></dubbo:protocol>
+
+    <!-- 应用配置：用于配置当前应用信息，不管该应用是提供者还是消费者 -->
+    <dubbo:application name="learn-provider"></dubbo:application>
+
+    <!-- 模块配置（可选）：用于配置当前模块信息，可选 -->
+    <!--<dubbo:module name=""></dubbo:module>-->
+
+    <!-- 注册中心配置：用于配置连接注册中心相关信息 -->
+    <dubbo:registry address="zookeeper://127.0.0.1:2181"></dubbo:registry>
+
+    <!-- 监控中心配置（可选）：用于配置连接监控中心相关信息，可选 -->
+    <dubbo:monitor protocol="registry"></dubbo:monitor>
+
+    <!-- 提供方配置（可选）： 当 ProtocolConfig 和 ServiceConfig 某属性没有配置时，采用此缺省值，可选-->
+    <!--<dubbo:provider></dubbo:provider>-->
+
+    <!-- 消费方配置（可选）：当 ReferenceConfig 某属性没有配置时，采用此缺省值，可选 -->
+    <!--<dubbo:consumer></dubbo:consumer>-->
+
+    <!-- 方法配置（可选）：用于 ServiceConfig 和 ReferenceConfig 指定方法级的配置信息 -->
+    <!--<dubbo:method name=""></dubbo:method>-->
+
+    <!-- 参数配置：用于指定方法参数配置 -->
+    <!--<dubbo:argument></dubbo:argument>-->
 
 
+
+
+    <!-- 服务配置：用于暴露一个服务，定义服务的元信息，一个服务可以用多个协议暴露，一个服务也可以注册到多个注册中心 -->
     <dubbo:service interface="pers.mk.dubbo.learn.service.TestService" version="1.0.0" ref="testService" owner="mk"/>
-    <dubbo:service interface="pers.mk.dubbo.learn.service.DubboService" version="1.0.0" ref="dubboService" owner="mk"/>
+    <dubbo:service interface="pers.mk.dubbo.learn.service.DubboService" version="1.0.0" ref="dubboService" owner="mk">
+        <dubbo:method name="getDubboUserById" timeout="1000"/>
+    </dubbo:service>
+
 </beans>
