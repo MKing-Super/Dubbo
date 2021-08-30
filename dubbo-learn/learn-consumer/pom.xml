@@ -16,9 +16,25 @@
 
     <properties>
         <java.version>1.8</java.version>
+        <!-- 项目文字编码 -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
 
     <dependencies>
+        <!-- 引入learn-api服务（自己的项目） -->
+        <dependency>
+            <groupId>pers.mk.dubbo.learn</groupId>
+            <artifactId>learn-api</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <!-- 引入提供者（自己的项目） -->
+        <dependency>
+            <groupId>pers.mk.dubbo.learn</groupId>
+            <artifactId>learn-provider</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -38,18 +54,6 @@
             <version>0.2.0</version>
         </dependency>
 
-        <!-- 引入提供者 -->
-        <dependency>
-            <groupId>pers.mk.dubbo.learn</groupId>
-            <artifactId>learn-provider</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>pers.mk.dubbo.learn</groupId>
-            <artifactId>learn-api</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-
         <!-- apollo依赖 -->
         <dependency>
             <groupId>com.ctrip.framework.apollo</groupId>
@@ -65,8 +69,6 @@
         </dependency>
 
     </dependencies>
-
-
 
 
     <build>
