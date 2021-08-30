@@ -16,6 +16,10 @@ java -jar apollo-configservice-1.9.0.jar
 java -jar apollo-portal-1.9.0.jar
 ```
 
+或
+
+**双击xxx-run.bat文件。**
+
 
 
 ## 3、登录

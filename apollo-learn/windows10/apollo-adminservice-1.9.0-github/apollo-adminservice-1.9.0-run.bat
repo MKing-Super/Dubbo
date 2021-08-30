@@ -1,0 +1,1 @@
+java -jar apollo-adminservice-1.9.0.jar

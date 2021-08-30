@@ -1,0 +1,1 @@
+java -jar apollo-portal-1.9.0.jar
