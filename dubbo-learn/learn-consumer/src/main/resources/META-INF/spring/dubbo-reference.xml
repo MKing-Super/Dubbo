@@ -19,7 +19,8 @@
                      check="true" retries="2" cluster="failsafe" loadbalance="roundrobin"
                      version="1.0.0" owner="mk"/>
 
-    <dubbo:reference interface="pers.mk.dubbo.learn.service.DubboService" id="dubboService" version="1.0.0">
+    <dubbo:reference interface="pers.mk.dubbo.learn.service.DubboService" id="dubboService"
+                     version="1.0.0" owner="mk">
         <dubbo:method name="getDubboUserById" retries="2" loadbalance="roundrobin"/>
     </dubbo:reference>
 
@@ -27,7 +28,8 @@
 
 
 
-    <!-- 直连提供者：配置 url 指向提供者，将绕过注册中心，多个地址用分号隔开 -->
+    <!-- 直连提供者：配置 url 指向提供者，将绕过注册中心，多个地址用分号隔开。注意：在消费者方取消zookeeper注册。 -->
 <!--    <dubbo:reference interface="pers.mk.dubbo.learn.service.TestService" id="testService"-->
-<!--                     url="dubbo://127.0.0.1:20880"/>-->
+<!--                     url="dubbo://127.0.0.1:20880"-->
+<!--                     version="1.0.0" owner="mk"/>-->
 </beans>
