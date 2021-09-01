@@ -16,19 +16,22 @@
 
 
     <!-- 协议配置：用于配置提供服务的协议信息，协议由提供方指定，消费方被动接受 -->
-    <dubbo:protocol name="dubbo" port="20880"></dubbo:protocol>
+    <!-- 线程模型：dispatcher="all"，所有消息都派发到线程池，包括请求，响应，连接事件，断开事件，心跳等。
+                    threadpool="fixed"，fixed 固定大小线程池，启动时建立线程，不关闭，一直持有。(缺省)-->
+    <dubbo:protocol name="dubbo" port="20880"
+                    dispatcher="all" threadpool="fixed"/>
 
     <!-- 应用配置：用于配置当前应用信息，不管该应用是提供者还是消费者 -->
-    <dubbo:application name="learn-provider"></dubbo:application>
+    <dubbo:application name="learn-provider"/>
 
     <!-- 模块配置（可选）：用于配置当前模块信息，可选 -->
     <!--<dubbo:module name=""></dubbo:module>-->
 
     <!-- 注册中心配置：用于配置连接注册中心相关信息 -->
-    <dubbo:registry address="zookeeper://127.0.0.1:2181"></dubbo:registry>
+    <dubbo:registry address="zookeeper://127.0.0.1:2181"/>
 
     <!-- 监控中心配置（可选）：用于配置连接监控中心相关信息，可选 -->
-    <dubbo:monitor protocol="registry"></dubbo:monitor>
+    <dubbo:monitor protocol="registry"/>
 
     <!-- 提供方配置（可选）： 当 ProtocolConfig 和 ServiceConfig 某属性没有配置时，采用此缺省值，可选-->
     <!--<dubbo:provider></dubbo:provider>-->
@@ -46,9 +49,20 @@
 
 
     <!-- 服务配置：用于暴露一个服务，定义服务的元信息，一个服务可以用多个协议暴露，一个服务也可以注册到多个注册中心 -->
-    <dubbo:service interface="pers.mk.dubbo.learn.service.TestService" version="1.0.0" ref="testService" owner="mk"/>
+    <!-- 失败自动切换，当出现失败，重试其它服务器。通常用于读操作，但重试会带来更长延迟。可通过 retries="2" 来设置重试次数(不含第一次)。 -->
+    <!-- 集群容错：cluster="failsafe"，失败安全，出现异常时，直接忽略。通常用于写入审计日志等操作。 -->
+    <!-- 负载均衡：loadbalance="roundrobin"，使用加权轮询。默认使用random 随机调用。 -->
+    <dubbo:service interface="pers.mk.dubbo.learn.service.TestService" ref="testService"
+                   retries="2" cluster="failsafe" loadbalance="roundrobin"
+                   version="1.0.0" owner="mk"/>
+
+
+
+
+
+
     <dubbo:service interface="pers.mk.dubbo.learn.service.DubboService" version="1.0.0" ref="dubboService" owner="mk">
-        <dubbo:method name="getDubboUserById" timeout="1000"/>
+        <dubbo:method name="getDubboUserById" timeout="1000" loadbalance="roundrobin"/>
     </dubbo:service>
 
 </beans>

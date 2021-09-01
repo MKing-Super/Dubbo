@@ -14,7 +14,20 @@
         http://www.springframework.org/schema/util
         http://www.springframework.org/schema/util/spring-util.xsd">
 
+    <!-- Dubbo 缺省会在启动时检查依赖的服务是否可用，不可用时会抛出异常，阻止 Spring 初始化完成，以便上线时，能及早发现问题，默认 check="true"。 -->
+    <dubbo:reference interface="pers.mk.dubbo.learn.service.TestService" id="testService"
+                     check="true" retries="2" cluster="failsafe" loadbalance="roundrobin"
+                     version="1.0.0" owner="mk"/>
 
-    <dubbo:reference interface="pers.mk.dubbo.learn.service.TestService" id="testService" version="1.0.0"/>
-    <dubbo:reference interface="pers.mk.dubbo.learn.service.DubboService" id="dubboService" version="1.0.0"/>
+    <dubbo:reference interface="pers.mk.dubbo.learn.service.DubboService" id="dubboService" version="1.0.0">
+        <dubbo:method name="getDubboUserById" retries="2" loadbalance="roundrobin"/>
+    </dubbo:reference>
+
+
+
+
+
+    <!-- 直连提供者：配置 url 指向提供者，将绕过注册中心，多个地址用分号隔开 -->
+<!--    <dubbo:reference interface="pers.mk.dubbo.learn.service.TestService" id="testService"-->
+<!--                     url="dubbo://127.0.0.1:20880"/>-->
 </beans>
