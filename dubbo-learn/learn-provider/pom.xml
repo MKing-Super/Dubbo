@@ -101,6 +101,7 @@
     </dependencies>
 
 
+    <!-- 打jar包的时候注释掉  -->
     <plugins>
         <!-- dubbo项目打依赖jar包，引入必备 -->
         <plugin>

@@ -70,7 +70,7 @@
 
     </dependencies>
 
-
+    <!-- 打jar包的时候注释掉  -->
     <build>
         <plugins>
             <plugin>
