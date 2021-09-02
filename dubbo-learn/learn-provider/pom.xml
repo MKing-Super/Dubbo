@@ -101,31 +101,15 @@
     </dependencies>
 
 
-    <!-- 打jar包的时候注释掉  -->
-    <plugins>
-        <!-- dubbo项目打依赖jar包，引入必备 -->
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-dependency-plugin</artifactId>
-            <executions>
-                <execution>
-                    <id>copy-dependencies</id>
-                    <phase>package</phase>
-                    <goals>
-                        <goal>copy-dependencies</goal>
-                    </goals>
-                    <configuration>
-                        <type>jar</type>
-                        <includeTypes>jar</includeTypes>
-                        <useUniqueVersions>false</useUniqueVersions>
-                        <outputDirectory>
-                            ${project.build.directory}/lib
-                        </outputDirectory>
-                    </configuration>
-                </execution>
-            </executions>
-        </plugin>
-    </plugins>
-
+    <build>
+        <finalName>learn-provider</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.1.2</version>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

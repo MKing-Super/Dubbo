@@ -1,6 +1,8 @@
 package pers.mk.dubbo.learn.web.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.ctrip.framework.apollo.Config;
+import com.ctrip.framework.apollo.ConfigService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,5 +36,12 @@ public class TestController {
         DubboUser dubboUser = testService.getDubboUser(1);
         System.out.println(dubboUser);
         return dubboUser;
+    }
+
+    @ResponseBody
+    @RequestMapping("/propertyTime")
+    public String propertyTime(){
+        Config config = ConfigService.getAppConfig();
+        return "获取超过时间：" + config.getIntProperty("server.port",200);
     }
 }

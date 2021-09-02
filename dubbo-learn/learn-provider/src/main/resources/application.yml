@@ -23,7 +23,7 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.jdbc.Driver
 mybatis:
-  mapper-locations: classpath:META-INF/mapper/*.xml     # mapper映射文件
+  mapper-locations: classpath*:pers/mk/dubbo/learn/mapper/*.xml     # mapper映射文件
 
 # apollo配置
 app:

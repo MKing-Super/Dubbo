@@ -29,3 +29,6 @@ logging:
     com:
       gf:
         controller: debug
+
+# 开启springBoot的debug(可以在控制台看到已生效的配置类)
+#debug: true
