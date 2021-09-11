@@ -1,13 +1,13 @@
 server:
   port: 9020
 
-dubbo:
-  application:
-    name: start-consumer
-  registry:
-    address: zookeeper://127.0.0.1:2181
-  monitor:
-    protocol: registry
+spring:
+  profiles:
+    active: local
+  mvc:
+    view:
+      prefix: /templates/
+      suffix: .jsp
 
 # apollo配置
 app:
