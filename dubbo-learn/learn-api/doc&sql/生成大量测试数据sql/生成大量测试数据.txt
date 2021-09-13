@@ -1,0 +1,35 @@
+#建测试表
+CREATE TABLE t (
+                id int NOT NULL AUTO_INCREMENT PRIMARY KEY comment '自增主键', 
+                dept tinyint not null comment '部门id',
+                name varchar(30) comment '用户名称',
+                create_time datetime not null comment '注册时间', 
+                last_login_time datetime comment '最后登录时间'
+               ) comment '测试表';
+ 
+#手工插入第一条测试数据，后面数据会根据这条数据作为基础生成
+insert into t values(1,1,'user_1', '2018-01-01 00:00:00', '2018-03-01 12:00:00');
+
+#初始化序列变量
+set @i=1;
+ 
+ 
+#==================此处拷贝反复执行，直接符合预想的数据量===================
+#执行20次即2的20次方=1048576 条记录
+#执行23次即2的23次方=8388608 条记录
+#执行24次即2的24次方=16777216 条记录
+#......
+insert into t(dept, name, create_time, last_login_time) 
+select left(rand()*10,1) as dept,   #随机生成1~10的整数
+        concat('user_',@i:=@i+1),   #按序列生成不同的name
+        date_add(create_time,interval +@i*cast(rand()*100 as signed) SECOND), #生成有时间大顺序随机注册时间
+        date_add(date_add(create_time,interval +@i*cast(rand()*100 as signed) SECOND), interval + cast(rand()*1000000 as signed) SECOND) #生成有时间大顺序的随机的最后登录时间
+from t;
+select count(1) from t;
+#==================此处结束反复执行=====================
+ 
+ 
+#创建索引(视情况执行)
+create index idx_dept on t(dept);
+create index idx_create_time on t(create_time);
+create index idx_last_login_time on t(last_login_time);
