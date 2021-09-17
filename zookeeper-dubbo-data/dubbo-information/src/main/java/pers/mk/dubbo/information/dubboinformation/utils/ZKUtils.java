@@ -49,9 +49,9 @@ public class ZKUtils implements Watcher, AsyncCallback.StatCallback {
      * @Param: []
      * @Return: java.lang.StringBuilder
      */
-    public static StringBuilder getZookeeperJSON() throws InterruptedException, IOException {
+    public static StringBuilder getZookeeperJSON(String connectString) throws InterruptedException, IOException {
         stringBuilder = new StringBuilder();
-        zooKeeper = new ZooKeeper("10.100.210.127:2181", 99999999, nestty);
+        zooKeeper = new ZooKeeper(connectString, 99999999, nestty);
         Thread.sleep(1000);
         //填写节点
         nestty.loopWatch("/dubbo");

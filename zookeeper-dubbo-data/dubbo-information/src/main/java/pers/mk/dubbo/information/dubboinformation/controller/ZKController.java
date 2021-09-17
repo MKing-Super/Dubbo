@@ -33,8 +33,9 @@ public class ZKController {
 
     @ResponseBody
     @RequestMapping("/zkjson")
-    public StringBuilder zkjson() throws IOException, InterruptedException, KeeperException {
-        StringBuilder stringBuilder = ZKUtils.getZookeeperJSON();
+    public String zkjson(String IP,String port,HttpServletRequest request, HttpServletResponse response) throws IOException, InterruptedException {
+        String connectString = IP + ":" + port;
+        StringBuilder stringBuilder = ZKUtils.getZookeeperJSON(connectString);
         //url解析
         stringBuilder = new StringBuilder(ZKUtils.urlDecoderString(stringBuilder.toString()));
         //去除最后的逗号
@@ -73,19 +74,20 @@ public class ZKController {
 //        setUpExcel(request,response);
 
         //写入文件
-        File file = new File("./mk.txt");
-        if (!file.exists() && file.isDirectory()){
-            file.mkdir();
-            file.createNewFile();
-        }
-        Writer out = new FileWriter(file);
-        BufferedWriter bw = new BufferedWriter(out);
-        bw.write(stringBuilder.toString());
-        bw.newLine();
-        bw.flush();
-        bw.close();
-
-        return stringBuilder;
+//        File file = new File("./mk.txt");
+//        if (!file.exists() && file.isDirectory()){
+//            file.mkdir();
+//            file.createNewFile();
+//        }
+//        Writer out = new FileWriter(file);
+//        BufferedWriter bw = new BufferedWriter(out);
+//        bw.write(stringBuilder.toString());
+//        bw.newLine();
+//        bw.flush();
+//        bw.close();
+        setUpExcel(request,response);
+//        return stringBuilder;
+        return "/zk/zkjson";
     }
 
     /**
