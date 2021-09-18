@@ -6,6 +6,7 @@ import org.apache.poi.hssf.usermodel.HSSFRichTextString;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.zookeeper.KeeperException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -92,6 +93,7 @@ public class ZKController {
 //        bw.flush();
 //        bw.close();
         model.addAttribute("result",1);
+        model.addAttribute("total",zkModelList.size());
         return "/index";
     }
 
@@ -122,26 +124,39 @@ public class ZKController {
         }
 
         //遍历集合，将每个集合元素对象的每个值填充到单元格中
-        for(int i=0;i<zkModelList.size();i++){
-            ZKModel statisticsModel=zkModelList.get(i);
+        int i = 0;
+        for (ZKModel zkModel : zkModelList){
+            ZKModel statisticsModel=zkModel;
             //从第二行开始填充数据
             row = sheet.createRow(i+1);
             //该集合只记录数量和时间，这两个值来自statisticsModel。如果对象比较复杂，需要额外转换，比如Date类型的日期，int，float类型的数值
             List<String> datas=new ArrayList<>();
-
-            String father=statisticsModel.getFather().toString();
-            String son=statisticsModel.getSon().toString();
+            i++;
+            String father=statisticsModel.getFather();
+            List<String> sonList = statisticsModel.getSon();
             datas.add(father);
-            datas.add(son);
-            for (int j=0;j<datas.size();j++) {
-                String string=datas.get(j);
-                HSSFCell cell = row.createCell(j);
+//            datas.add(son);
+            if (sonList.size()>1){
+                //创建合并单元格区域
+                CellRangeAddress cra=new CellRangeAddress(i+1, i+sonList.size(), 0, 0);
+                //在sheet里增加合并单元格
+                sheet.addMergedRegion(cra);
+                HSSFRow row11 = sheet.createRow(i);
+                HSSFCell cell_1 = row11.createCell(0);
+                cell_1.setCellValue(father);
+            }else {
+                String string=father;
+                HSSFCell cell = row.createCell(1);
                 HSSFRichTextString richString = new HSSFRichTextString(string);
-//                HSSFFont font3 = workbook.createFont();
-////                定义Excel数据颜色，这里设置为蓝色
-//                font3.setColor(HSSFColor.BLUE.index);
-//                richString.applyFont(font3);
                 cell.setCellValue(richString);
+            }
+
+            for (int z = 0;z<sonList.size();z++){
+                    String string=sonList.get(z);
+                    HSSFCell cell = row.createCell(1);
+                    HSSFRichTextString richString = new HSSFRichTextString(string);
+                    cell.setCellValue(richString);
+                row = sheet.createRow(++i);
             }
 
         }

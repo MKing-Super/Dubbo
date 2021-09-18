@@ -12,13 +12,13 @@ welcome
         IP--><input type="text" name="ip" placeholder="10.100.210.127" required="required"
                     pattern="^((2(5[0-5]|[0-4]\d))|[0-1]?\d{1,2})(\.((2(5[0-5]|[0-4]\d))|[0-1]?\d{1,2})){3}$">
         port--><input type="text" name="port" placeholder="2181" required="required"
-                      pattern="^(0\.\d+|1)$"><br/>
+                      pattern="^[1-9]\d*$"><br/>
         <input type="submit" value="查找">
     </form>
 </div>
 <hr/>
-<p th:if="${result==0}" style="color: red">连接失败!</p>
-<p th:if="${result==1}" style="color: green">连接成功~</p>
+<p th:if="${result==0}" style="color: red">连接失败!</span></p>
+<p th:if="${result==1}" style="color: green">连接成功~<span th:text="${total}"></p>
 <hr/>
 <div th:if="${result==1}">
     <form action="/zk/downloadExcel">
