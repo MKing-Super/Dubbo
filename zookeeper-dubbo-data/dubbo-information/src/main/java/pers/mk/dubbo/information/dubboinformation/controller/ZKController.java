@@ -30,10 +30,12 @@ import java.util.Map;
 @Controller
 @RequestMapping("/zk")
 public class ZKController {
+
+    //结果集
     private static ArrayList<ZKModel> resultList = new ArrayList<>();
 
     @RequestMapping("/zkjson")
-    public String zkjson(String ip, String port, HttpServletRequest request, HttpServletResponse response, Model model) throws IOException, InterruptedException {
+    public String zkjson(String ip, String port, Model model) throws IOException, InterruptedException {
         String connectString = ip + ":" + port;
         StringBuilder stringBuilder = ZKUtils.getZookeeperJSON(connectString);
         if ("".equals(stringBuilder.toString())){
@@ -49,7 +51,7 @@ public class ZKController {
         //转成map
         JSONArray jsonArray = JSONArray.fromObject(stringBuilder.toString());
         List<Map<String,String>> mapListJson = (List)jsonArray;
-
+        //筛选
         ArrayList<ZKModel> zkModelList = new ArrayList<>();
         for (Map<String,String> map : mapListJson){
             String son = map.get("son");
@@ -89,9 +91,7 @@ public class ZKController {
 //        bw.newLine();
 //        bw.flush();
 //        bw.close();
-//        setUpExcel(request,response);
         model.addAttribute("result",1);
-//        return stringBuilder;
         return "/index";
     }
 
