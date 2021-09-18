@@ -138,7 +138,7 @@ public class ZKController {
 //            datas.add(son);
             if (sonList.size()>1){
                 //创建合并单元格区域
-                CellRangeAddress cra=new CellRangeAddress(i+1, i+sonList.size(), 0, 0);
+                CellRangeAddress cra=new CellRangeAddress(i, i+sonList.size()-1, 0, 0);
                 //在sheet里增加合并单元格
                 sheet.addMergedRegion(cra);
                 HSSFRow row11 = sheet.createRow(i);
@@ -151,12 +151,16 @@ public class ZKController {
                 cell.setCellValue(richString);
             }
 
-            for (int z = 0;z<sonList.size();z++){
+            for (int z = 0 ; z < sonList.size() ; z++){
                     String string=sonList.get(z);
                     HSSFCell cell = row.createCell(1);
                     HSSFRichTextString richString = new HSSFRichTextString(string);
                     cell.setCellValue(richString);
-                row = sheet.createRow(++i);
+                int temp = sonList.size() - 1;
+                if (z != temp){
+                    row = sheet.createRow(++i);
+                }
+
             }
 
         }

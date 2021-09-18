@@ -18,7 +18,7 @@ welcome
 </div>
 <hr/>
 <p th:if="${result==0}" style="color: red">连接失败!</span></p>
-<p th:if="${result==1}" style="color: green">连接成功~<span th:text="${total}"></p>
+<p th:if="${result==1}" style="color: green">连接成功~Dubbo下的节点总数：<span th:text="${total}"></p>
 <hr/>
 <div th:if="${result==1}">
     <form action="/zk/downloadExcel">
