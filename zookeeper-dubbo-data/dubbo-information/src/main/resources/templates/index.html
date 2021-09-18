@@ -9,9 +9,10 @@ welcome
 <hr/>
 <div>
     <form action="/zk/zkjson">
-        IP--><input type="text" name="IP" value="10.100.210.127"
+        IP--><input type="text" name="ip" placeholder="10.100.210.127" required="required"
                     pattern="^((2(5[0-5]|[0-4]\d))|[0-1]?\d{1,2})(\.((2(5[0-5]|[0-4]\d))|[0-1]?\d{1,2})){3}$">
-        port--><input type="text" name="port" value="2181"><br/>
+        port--><input type="text" name="port" placeholder="2181" required="required"
+                      pattern="^(0\.\d+|1)$"><br/>
         <input type="submit" value="查找">
     </form>
 </div>

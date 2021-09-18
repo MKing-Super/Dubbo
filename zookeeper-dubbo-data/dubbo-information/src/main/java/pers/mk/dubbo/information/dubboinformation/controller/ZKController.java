@@ -33,8 +33,8 @@ public class ZKController {
     private static ArrayList<ZKModel> resultList = new ArrayList<>();
 
     @RequestMapping("/zkjson")
-    public String zkjson(String IP, String port, HttpServletRequest request, HttpServletResponse response, Model model) throws IOException, InterruptedException {
-        String connectString = IP + ":" + port;
+    public String zkjson(String ip, String port, HttpServletRequest request, HttpServletResponse response, Model model) throws IOException, InterruptedException {
+        String connectString = ip + ":" + port;
         StringBuilder stringBuilder = ZKUtils.getZookeeperJSON(connectString);
         if ("".equals(stringBuilder.toString())){
             model.addAttribute("result",0);

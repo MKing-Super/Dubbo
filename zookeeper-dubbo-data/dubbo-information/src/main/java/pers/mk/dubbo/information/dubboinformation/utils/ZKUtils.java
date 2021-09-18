@@ -74,9 +74,11 @@ public class ZKUtils implements Watcher, AsyncCallback.StatCallback {
             List<String> paths = zooKeeper.getChildren(path,nestty);
             if(paths.isEmpty()){
                 byte[] data = zooKeeper.getData(path, true, stat);
-                if (data != null){
+                //目前不需要获取数据，false
+                if (data != null && false){
                     strList.add(path+" 没有子路径,data are "+new String(zooKeeper.getData(path,true, stat))+ "\n");
-                    stringBuilder.append(path+" 没有子路径,data are "+new String(zooKeeper.getData(path,true, stat)));
+                    String temp = "没有子路径,data are " + new String(data);
+                    stringBuilder.append("{\"father\"" + ":" + "\"" + path + "\"" + ",\"son\"" + ":" + "\"" + 9999 + "\"" + "},");
 //                    System.out.println(path+" have no children,data are "+new String(zooKeeper.getData(path,true, stat)));
                     zooKeeper.exists(path,nestty);
                 }
