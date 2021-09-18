@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>welcome~</title>
@@ -7,15 +7,23 @@
 <body>
 welcome
 <hr/>
-<form action="/zk/zkjson">
-    IP--><input type="text" name="IP" value="10.100.210.127">
-    port--><input type="text" name="port" value="2181"><br/>
-    <input type="submit" value="查找并导出Excel">
-</form>
+<div>
+    <form action="/zk/zkjson">
+        IP--><input type="text" name="IP" value="10.100.210.127"
+                    pattern="^((2(5[0-5]|[0-4]\d))|[0-1]?\d{1,2})(\.((2(5[0-5]|[0-4]\d))|[0-1]?\d{1,2})){3}$">
+        port--><input type="text" name="port" value="2181"><br/>
+        <input type="submit" value="查找">
+    </form>
+</div>
 <hr/>
-<form action="/zk/downloadExcel">
-    downloadExcel-->
-    <input type="submit" value="导出Excel">
-</form>
+<p th:if="${result==0}" style="color: red">连接失败!</p>
+<p th:if="${result==1}" style="color: green">连接成功~</p>
+<hr/>
+<div th:if="${result==1}">
+    <form action="/zk/downloadExcel">
+        downloadExcel-->
+        <input type="submit" value="导出Excel">
+    </form>
+</div>
 </body>
 </html>

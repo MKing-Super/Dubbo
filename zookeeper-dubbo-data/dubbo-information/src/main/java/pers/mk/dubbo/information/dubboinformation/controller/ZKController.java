@@ -8,6 +8,7 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.zookeeper.KeeperException;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import pers.mk.dubbo.information.dubboinformation.api.ZKModel;
@@ -31,11 +32,14 @@ import java.util.Map;
 public class ZKController {
     private static ArrayList<ZKModel> resultList = new ArrayList<>();
 
-    @ResponseBody
     @RequestMapping("/zkjson")
-    public String zkjson(String IP,String port,HttpServletRequest request, HttpServletResponse response) throws IOException, InterruptedException {
+    public String zkjson(String IP, String port, HttpServletRequest request, HttpServletResponse response, Model model) throws IOException, InterruptedException {
         String connectString = IP + ":" + port;
         StringBuilder stringBuilder = ZKUtils.getZookeeperJSON(connectString);
+        if ("".equals(stringBuilder.toString())){
+            model.addAttribute("result",0);
+            return "/index";
+        }
         //url解析
         stringBuilder = new StringBuilder(ZKUtils.urlDecoderString(stringBuilder.toString()));
         //去除最后的逗号
@@ -85,9 +89,10 @@ public class ZKController {
 //        bw.newLine();
 //        bw.flush();
 //        bw.close();
-        setUpExcel(request,response);
+//        setUpExcel(request,response);
+        model.addAttribute("result",1);
 //        return stringBuilder;
-        return "/zk/zkjson";
+        return "/index";
     }
 
     /**

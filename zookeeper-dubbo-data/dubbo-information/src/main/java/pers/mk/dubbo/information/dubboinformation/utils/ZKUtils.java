@@ -56,7 +56,8 @@ public class ZKUtils implements Watcher, AsyncCallback.StatCallback {
         //填写节点
         nestty.loopWatch("/dubbo");
         zooKeeper.close();
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>> END >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+        String temp = "".equals(stringBuilder.toString()) ? "连接失败！" : "连接成功~";
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>> "+temp+" >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
         return stringBuilder;
     }
 
