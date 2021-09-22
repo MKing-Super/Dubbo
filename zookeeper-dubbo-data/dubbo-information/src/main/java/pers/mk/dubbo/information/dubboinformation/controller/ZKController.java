@@ -11,7 +11,9 @@ import org.apache.zookeeper.KeeperException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import pers.mk.dubbo.information.dubboinformation.api.ZKModel;
 import pers.mk.dubbo.information.dubboinformation.utils.ZKUtils;
 
@@ -29,19 +31,19 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/zk")
+@RequestMapping("zk")
 public class ZKController {
 
     //结果集
     private static ArrayList<ZKModel> resultList = new ArrayList<>();
 
-    @RequestMapping("/zkjson")
+    @RequestMapping(value = "/zkjson",method = RequestMethod.GET)
     public String zkjson(String ip, String port, Model model) throws IOException, InterruptedException {
         String connectString = ip + ":" + port;
         StringBuilder stringBuilder = ZKUtils.getZookeeperJSON(connectString);
         if ("".equals(stringBuilder.toString())){
             model.addAttribute("result",0);
-            return "/index";
+            return "index";
         }
         //url解析
         stringBuilder = new StringBuilder(ZKUtils.urlDecoderString(stringBuilder.toString()));
@@ -94,7 +96,7 @@ public class ZKController {
 //        bw.close();
         model.addAttribute("result",1);
         model.addAttribute("total",zkModelList.size());
-        return "/index";
+        return "index";
     }
 
     /**
@@ -104,7 +106,7 @@ public class ZKController {
      * @Param: [request, response]
      * @Return: void
      */
-    @RequestMapping("/downloadExcel")
+    @RequestMapping(value = "/downloadExcel",method = RequestMethod.POST)
     public static void setUpExcel(HttpServletRequest request, HttpServletResponse response) throws IOException{
         List<ZKModel> zkModelList = resultList;
         //列名
