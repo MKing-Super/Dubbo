@@ -1,0 +1,2 @@
+java -jar dubbo-information-0.0.1-SNAPSHOT.jar
+pause
