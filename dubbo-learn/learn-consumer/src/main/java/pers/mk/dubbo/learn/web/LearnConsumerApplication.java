@@ -10,7 +10,7 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.annotation.ImportResource;
 
 //使用apollo的时候打开 @EnableApolloConfig
-@EnableApolloConfig(value = "application", order = 10)
+//@EnableApolloConfig(value = "application", order = 10)
 @ImportResource({"classpath:/META-INF/spring/*.xml"})                   //扫描静态文件
 @SpringBootApplication(exclude= {DataSourceAutoConfiguration.class})    //配置数据库
 public class LearnConsumerApplication {

@@ -10,18 +10,14 @@ spring:
       suffix: .jsp
 
 # apollo配置
-app:
-  # 对应apollo的id
-  id: learn-consumer-apollo
-apollo:
-  # 配置中心的地址
-  meta: http://127.0.0.1:8080
-  # 在应用启动阶段，向Spring容器注入被托管的application.properties文件的配置信息。
-  bootstrap:
-    enabled: true
-    # 将Apollo配置加载提到初始化日志系统之前。
-    eagerLoad:
-      enabled: true
+#app:
+#  id: learn-consumer-apollo
+#apollo:
+#  meta: http://127.0.0.1:8080
+#  bootstrap:
+#    enabled: true
+#    eagerLoad:
+#      enabled: true
 
 # 调整 controller 包的 log 级别，为了后面演示在配置中心动态配置日志级别。
 logging:
