@@ -1,31 +1,24 @@
 package pers.mk.dubbo.information.dubboinformation.controller;
 
 import net.sf.json.JSONArray;
-import org.apache.commons.lang.ObjectUtils.Null;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRichTextString;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.util.CellRangeAddress;
-import org.apache.zookeeper.KeeperException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 import pers.mk.dubbo.information.dubboinformation.api.ZKModel;
 import pers.mk.dubbo.information.dubboinformation.utils.NesttyMain;
 import pers.mk.dubbo.information.dubboinformation.utils.ZKUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.Writer;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -35,11 +28,18 @@ import java.util.Map;
 @Controller
 @RequestMapping("zk")
 public class ZKController {
-
-    //结果集
+    //返回对应信息的结果集
     private static ArrayList<ZKModel> resultList = new ArrayList<>();
+    //zookeeper的连接信息
     private static String connectPath = "";
 
+    /**
+     * @Description: 查找zookeeper并返回对应信息的json字符串
+     * @Author: kun.ma
+     * @Date: 2021/9/27 16:14
+     * @Param: [ip, port, model]
+     * @Return: java.lang.String
+     */
     @RequestMapping(value = "/zkjson",method = RequestMethod.GET)
     public String zkjson(String ip, String port, Model model) throws IOException, InterruptedException {
         String connectString = ip + ":" + port;
@@ -169,7 +169,13 @@ public class ZKController {
         workbook.write(response.getOutputStream());
     }
 
-
+    /**
+     * @Description: 导出txt文件
+     * @Author: kun.ma
+     * @Date: 2021/9/27 16:13
+     * @Param: []
+     * @Return: java.lang.String
+     */
     @ResponseBody
     @RequestMapping(value = "/downloadTxt",method = RequestMethod.POST)
     public static String downloadTxt() throws IOException, InterruptedException {
