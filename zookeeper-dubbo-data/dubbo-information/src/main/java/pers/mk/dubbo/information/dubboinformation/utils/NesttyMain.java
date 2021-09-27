@@ -63,7 +63,8 @@ public class NesttyMain implements Watcher, AsyncCallback.StatCallback {
         zooKeeper.close();
         //写入文件
         System.out.println("=========================== 开始写入文件 ===========================");
-        String name = "dubbo-consumers-providers-原数据.txt";
+        String nowdate = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+        String name = "dubbo-consumers&providers-原数据-"+nowdate+".txt";
         String fileName = "./"+name;
         File file = new File(fileName);
         try {

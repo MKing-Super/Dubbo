@@ -158,7 +158,7 @@ public class ZKController {
         }
 
         response.setContentType("application/octet-stream");
-        String nowdate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+        String nowdate = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
         response.setHeader("Content-disposition", "attachment;filename="+"dubbo-consumers&providers-" + nowdate + ".xls");//Excel文件名
         try {
             response.flushBuffer();
