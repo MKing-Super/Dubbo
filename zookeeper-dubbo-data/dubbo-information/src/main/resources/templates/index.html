@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>welcome~</title>
+    <script type="text/javascript" th:src="@{/js/jquery-1.8.3.js}"></script>
 </head>
 <body>
 填写IP和端口，返回dubbo节点下所有的consumers和providers信息
@@ -18,13 +19,42 @@
 </div>
 <hr/>
 <p th:if="${result==0}" style="color: red">连接失败!</span></p>
-<p th:if="${result==1}" style="color: green">连接成功~Dubbo下的节点总数：<span th:text="${total}"></p>
+<p th:if="${result==1}" style="color: green">
+    连接成功~Dubbo下的节点总数：<span th:text="${total}">
+</p>
 <hr/>
 <div th:if="${result==1}">
     <form action="/zk/downloadExcel" method="post">
         downloadExcel-->
         <input type="submit" value="导出Excel">
     </form>
+    downloadTxt-->
+    <input id="downloadTxt" type="button" value="导出Zookeeper原数据Txt">
 </div>
+
+<script type="text/javascript">
+    $(function(){
+        $("#downloadTxt").click(function () {
+            $.ajax({
+                //请求方式
+                type : "POST",
+                //请求的媒体类型
+                contentType: "application/json;charset=UTF-8",
+                //请求地址
+                url : "/zk/downloadTxt",
+                //数据，json字符串
+                data : "",
+                //请求成功
+                success : function(result) {
+                    alert(result)
+                },
+                //请求失败，包含具体的错误信息
+                error : function(e){
+                    alert("返回信息失败！！！")
+                }
+            });
+        })
+    });
+</script>
 </body>
 </html>

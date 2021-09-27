@@ -1,6 +1,7 @@
 package pers.mk.dubbo.information.dubboinformation.controller;
 
 import net.sf.json.JSONArray;
+import org.apache.commons.lang.ObjectUtils.Null;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRichTextString;
 import org.apache.poi.hssf.usermodel.HSSFRow;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import pers.mk.dubbo.information.dubboinformation.api.ZKModel;
+import pers.mk.dubbo.information.dubboinformation.utils.NesttyMain;
 import pers.mk.dubbo.information.dubboinformation.utils.ZKUtils;
 
 import javax.servlet.http.HttpServletRequest;
@@ -36,10 +38,12 @@ public class ZKController {
 
     //结果集
     private static ArrayList<ZKModel> resultList = new ArrayList<>();
+    private static String connectPath = "";
 
     @RequestMapping(value = "/zkjson",method = RequestMethod.GET)
     public String zkjson(String ip, String port, Model model) throws IOException, InterruptedException {
         String connectString = ip + ":" + port;
+        connectPath = connectString;
         StringBuilder stringBuilder = ZKUtils.getZookeeperJSON(connectString);
         if ("".equals(stringBuilder.toString())){
             model.addAttribute("result",0);
@@ -81,19 +85,6 @@ public class ZKController {
 //        System.out.println(zkModelList);
         resultList = zkModelList;
 //        setUpExcel(request,response);
-
-        //写入文件
-//        File file = new File("./mk.txt");
-//        if (!file.exists() && file.isDirectory()){
-//            file.mkdir();
-//            file.createNewFile();
-//        }
-//        Writer out = new FileWriter(file);
-//        BufferedWriter bw = new BufferedWriter(out);
-//        bw.write(stringBuilder.toString());
-//        bw.newLine();
-//        bw.flush();
-//        bw.close();
         model.addAttribute("result",1);
         model.addAttribute("total",zkModelList.size());
         return "index";
@@ -147,9 +138,8 @@ public class ZKController {
                 HSSFCell cell_1 = row11.createCell(0);
                 cell_1.setCellValue(father);
             }else {
-                String string=father;
-                HSSFCell cell = row.createCell(1);
-                HSSFRichTextString richString = new HSSFRichTextString(string);
+                HSSFCell cell = row.createCell(0);
+                HSSFRichTextString richString = new HSSFRichTextString(father);
                 cell.setCellValue(richString);
             }
 
@@ -177,6 +167,13 @@ public class ZKController {
         }
         //将workbook中的内容写入输出流中
         workbook.write(response.getOutputStream());
+    }
 
+
+    @ResponseBody
+    @RequestMapping(value = "/downloadTxt",method = RequestMethod.POST)
+    public static String downloadTxt() throws IOException, InterruptedException {
+        //写入文件
+        return NesttyMain.downloadZookeeperTxt(connectPath);
     }
 }
