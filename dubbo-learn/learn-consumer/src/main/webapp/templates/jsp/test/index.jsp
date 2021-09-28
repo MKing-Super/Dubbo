@@ -16,7 +16,7 @@
 <body>
 <h1>${test}</h1>
 <h2>${nowdate}</h2>
-<input type="button" id="tt">
+<input type="button" id="tt" value="点我">
 </body>
 <script type="text/javascript">
     const index = {};
