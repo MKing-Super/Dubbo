@@ -79,11 +79,11 @@ public class NesttyMain implements Watcher, AsyncCallback.StatCallback {
                 bw.flush();
             }
             bw.close();
-            System.out.println("=========================== 写入文件成功 ===========================");
+            System.out.println("=========================== 写入文件成功  \\^O^/ ===========================");
         }catch (Exception e){
-            return "写入文件出错失败";
+            return "写入文件出错失败！ (╥ω╥`)";
         }
-        return "写入文件成功~文件名称：" + name;
+        return "写入文件成功~  \\^O^/ 文件名称：" + name;
     }
 
     public void loopWatch(String path){
