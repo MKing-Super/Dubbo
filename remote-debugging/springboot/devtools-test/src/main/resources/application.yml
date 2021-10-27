@@ -1,0 +1,6 @@
+spring:
+  devtools:
+    restart:
+      enabled: true
+    remote:
+      secret: test
