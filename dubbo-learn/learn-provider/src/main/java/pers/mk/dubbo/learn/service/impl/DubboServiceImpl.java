@@ -22,4 +22,9 @@ public class DubboServiceImpl implements DubboService {
     public DubboUser getDubboUserById(Integer id) {
         return dubboUserMapper.selectByPrimaryKey(id);
     }
+
+    @Override
+    public String remoteCall2() {
+        return "远程调用2~";
+    }
 }

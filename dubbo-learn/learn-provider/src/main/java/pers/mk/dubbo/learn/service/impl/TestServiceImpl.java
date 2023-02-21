@@ -33,4 +33,9 @@ public class TestServiceImpl implements TestService {
     public DubboUser getDubboUser(Integer id) {
         return dubboUserMapper.selectByPrimaryKey(id);
     }
+
+    @Override
+    public String remoteCall1() {
+        return "远程调用成功1~";
+    }
 }

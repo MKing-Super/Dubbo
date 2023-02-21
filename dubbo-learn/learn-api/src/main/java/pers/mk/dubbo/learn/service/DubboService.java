@@ -9,4 +9,5 @@ import pers.mk.dubbo.learn.model.DubboUser;
  */
 public interface DubboService {
     DubboUser getDubboUserById(Integer id);
+    String remoteCall2();
 }

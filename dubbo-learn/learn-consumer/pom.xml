@@ -83,6 +83,27 @@
             <artifactId>jstl</artifactId>
         </dependency>
 
+
+
+        <!-- dubbo链路追踪专用 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-sleuth</artifactId>
+            <version>3.0.4</version>
+        </dependency>
+        <!-- dubbo链路追踪专用 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-sleuth-zipkin</artifactId>
+            <version>3.0.4</version>
+        </dependency>
+        <!-- dubbo链路追踪专用 -->
+        <dependency>
+            <groupId>io.zipkin.brave</groupId>
+            <artifactId>brave-instrumentation-dubbo-rpc</artifactId>
+            <version>5.13.3</version>
+        </dependency>
+
     </dependencies>
 
     <!-- 打jar包的时候注释掉  -->

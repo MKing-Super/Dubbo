@@ -13,6 +13,7 @@ import java.util.List;
  * @Date: 2021/8/22 14:31
  */
 public interface TestService {
-    public List<TestModel> getTestInformation();
-    public DubboUser getDubboUser(Integer id);
+    List<TestModel> getTestInformation();
+    DubboUser getDubboUser(Integer id);
+    String remoteCall1();
 }

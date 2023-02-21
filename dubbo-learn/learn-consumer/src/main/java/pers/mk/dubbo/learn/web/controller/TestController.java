@@ -1,18 +1,15 @@
 package pers.mk.dubbo.learn.web.controller;
 
-import com.alibaba.dubbo.config.annotation.Reference;
 import com.ctrip.framework.apollo.Config;
 import com.ctrip.framework.apollo.ConfigService;
-import org.apache.zookeeper.KeeperException;
-import org.apache.zookeeper.ZooKeeper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import pers.mk.dubbo.learn.model.DubboUser;
 import pers.mk.dubbo.learn.model.TestModel;
+import pers.mk.dubbo.learn.service.DubboService;
 import pers.mk.dubbo.learn.service.TestService;
 
 import java.util.Date;
@@ -28,11 +25,13 @@ import java.util.List;
 public class TestController {
     @Autowired
     private TestService testService;
+    @Autowired
+    private DubboService dubboService;
 
     @RequestMapping("/index")
     public String index(Model model) {
-        model.addAttribute("test","这里是test的index");
-        model.addAttribute("nowdate",new Date());
+        model.addAttribute("test", "这里是test的index");
+        model.addAttribute("nowdate", new Date());
         return "/jsp/test/index";
     }
 
@@ -53,8 +52,20 @@ public class TestController {
 
     @ResponseBody
     @RequestMapping("/propertyTime")
-    public String propertyTime(){
+    public String propertyTime() {
         Config config = ConfigService.getAppConfig();
-        return "获取超过时间：" + config.getIntProperty("server.port",200);
+        return "获取超过时间：" + config.getIntProperty("server.port", 200);
     }
+
+
+    @ResponseBody
+    @RequestMapping("/dubboTest")
+    public String dubboTest() {
+        testService.remoteCall1();
+        dubboService.remoteCall2();
+        testService.remoteCall1();
+        return "dubbo远程调用成功！";
+    }
+
+
 }
