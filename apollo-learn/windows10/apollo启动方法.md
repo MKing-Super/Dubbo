@@ -6,7 +6,7 @@
 
 ​	root
 
-​	123456
+​	123
 
 ## 2、依次启动jar包
 
@@ -29,3 +29,23 @@ java -jar apollo-portal-1.9.0.jar
 账号：apollo
 
 密码：admin
+
+
+
+
+
+```bash
+create database ApolloPortalDB DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
+create database ApolloConfigDB DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
+
+
+set global innodb_file_format = BARRACUDA;
+set global innodb_large_prefix = ON;
+```
+
+
+
+在建表时候，`apolloportaldb`.SPRING_SESSION_ATTRIBUTES表字段超过767：
+
+SHOW VARIABLES LIKE 'innodb_large_prefix'; 
+SET GLOBAL INNODB_LARGE_PREFIX = ON; 
