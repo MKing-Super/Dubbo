@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo" xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util.xsd">
+
+
+    <context:property-placeholder />
+
+    <dubbo:application name="dubbo3-main-provider" />
+    <dubbo:registry protocol="zookeeper" address="127.0.0.1:2181" check="false"/>
+    <dubbo:consumer timeout="120000" check="false"/>
+    <dubbo:protocol name="" port="20885"/>
+
+    <dubbo:service interface="pers.mk.dubbo3.main.api.service.MainTestService" ref="mainTestService" version="0.0.0"/>
+
+</beans>
