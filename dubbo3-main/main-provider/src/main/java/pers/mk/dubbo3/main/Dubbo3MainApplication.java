@@ -20,6 +20,8 @@ import org.springframework.context.annotation.ImportResource;
 @SpringBootApplication
 public class Dubbo3MainApplication {
     public static void main(String[] args) {
+        // 本地项目无法连接zk的解决方案
+        System.setProperty("zookeeper.sasl.client","false");
         SpringApplication.run(Dubbo3MainApplication.class,args);
         log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
     }

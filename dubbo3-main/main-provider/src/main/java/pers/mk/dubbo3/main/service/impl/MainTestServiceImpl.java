@@ -4,6 +4,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import pers.mk.dubbo3.main.api.service.MainTestService;
 
+import java.util.Date;
+
 /**
  * @describe: TODO
  * @Author MK
@@ -18,6 +20,6 @@ public class MainTestServiceImpl implements MainTestService {
     @Override
     public String test(String name) {
         log.info("MainTestServiceImpl");
-        return "dubbo3-main-provider::" + this.getClass().getName() + "::test()::" + name;
+        return "dubbo3-main-provider::" + this.getClass().getName() + "::test()::" + name + "::" + new Date();
     }
 }

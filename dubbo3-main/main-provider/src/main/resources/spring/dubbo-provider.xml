@@ -18,7 +18,7 @@
     <context:property-placeholder />
 
     <dubbo:application name="dubbo3-main-provider" />
-    <dubbo:registry protocol="zookeeper" address="127.0.0.1:2181" check="false"/>
+    <dubbo:registry protocol="zookeeper" address="10.100.210.101:2181" check="false"/>
     <dubbo:consumer timeout="120000" check="false"/>
     <dubbo:protocol name="" port="20885"/>
 
