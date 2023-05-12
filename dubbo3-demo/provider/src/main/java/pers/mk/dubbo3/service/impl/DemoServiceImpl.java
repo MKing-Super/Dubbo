@@ -19,6 +19,6 @@ public class DemoServiceImpl implements DemoService {
     @Override
     public String testMk(Integer temp) {
         log.info("^^^^^^^^^^^^^^^^^^^^^");
-        return "调用demoServiceImpl成功：：参数：：" +temp;
+        return "dubbo3-demo-provider::" + this.getClass() + "::testMk()::" + temp;
     }
 }

@@ -18,6 +18,6 @@ public class MainTestServiceImpl implements MainTestService {
     @Override
     public String test(String name) {
         log.info("MainTestServiceImpl");
-        return "MainTestServiceImpl::参数：：" + name;
+        return "dubbo3-main-provider::" + this.getClass().getName() + "::test()::" + name;
     }
 }
