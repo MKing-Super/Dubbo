@@ -20,7 +20,9 @@
     <dubbo:application name="dubbo3-main-provider" />
     <dubbo:registry protocol="zookeeper" address="10.100.210.101:2181" check="false"/>
     <dubbo:consumer timeout="120000" check="false"/>
-    <dubbo:protocol name="" port="20885"/>
+    <dubbo:protocol name="dubbo" port="20885"/>
+
+
 
     <dubbo:service interface="pers.mk.dubbo3.main.api.service.MainTestService" ref="mainTestService" version="0.0.0"/>
 

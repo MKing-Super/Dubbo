@@ -1,6 +1,9 @@
 package pers.mk.dubbo3.main.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.dubbo.common.Version;
+import org.apache.dubbo.config.ApplicationConfig;
 import org.springframework.stereotype.Service;
 import pers.mk.dubbo3.main.api.service.MainTestService;
 
@@ -19,7 +22,13 @@ import java.util.Date;
 public class MainTestServiceImpl implements MainTestService {
     @Override
     public String test(String name) {
-        log.info("MainTestServiceImpl");
-        return "dubbo3-main-provider::" + this.getClass().getName() + "::test()::" + name + "::" + new Date();
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("version","dubbo " + Version.getVersion());
+        jsonObject.put("className",this.getClass().getName());
+        jsonObject.put("method","test");
+        jsonObject.put("parameter",name);
+        jsonObject.put("time",new Date());
+        log.info(jsonObject.toJSONString());
+        return jsonObject.toJSONString();
     }
 }
